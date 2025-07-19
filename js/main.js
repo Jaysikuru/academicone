@@ -74,26 +74,35 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.classList.remove('no-js');
 });
 
-/**
- * Initialize intersection observer for lazy loading sections
- */
 function initLazyLoading() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    // Check if IntersectionObserver is supported
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            // More mobile-friendly values:
+            rootMargin: '0px 0px 50px 0px', // CHANGED: from -50px to 50px (positive value)
+            threshold: 0.05 // CHANGED: Lower threshold for easier triggering on mobile
+        });
+        
+        // Observe all lazy sections
+        document.querySelectorAll('.lazy-section').forEach(section => {
+            // Safety check - don't observe sections that are already visible
+            if (!section.classList.contains('visible')) {
+                observer.observe(section);
             }
         });
-    }, {
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0.1
-    });
-    
-    // Observe all lazy sections
-    document.querySelectorAll('.lazy-section').forEach(section => {
-        observer.observe(section);
-    });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        document.querySelectorAll('.lazy-section').forEach(section => {
+            section.classList.add('visible');
+        });
+    }
 }
 
 /**
@@ -1036,13 +1045,33 @@ function animateServicesOnScroll() {
         observer.observe(service);
     });
 }
-
+/**
+ * Ensure the consultation section is visible on mobile devices
+ * This is a backup in case the lazy loading doesn't trigger
+ */
+function ensureConsultationVisibility() {
+    const consultSection = document.getElementById('consult');
+    if (!consultSection) return;
+    
+    // For mobile devices
+    if (window.innerWidth < 768) {
+        consultSection.classList.add('visible');
+    }
+    
+    // Also set a timeout as a last resort
+    setTimeout(() => {
+        if (!consultSection.classList.contains('visible')) {
+            consultSection.classList.add('visible');
+        }
+    }, 1000);
+}
 // Call initConsultationSection function when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize consultation section if it exists
     if (document.getElementById('consult')) {
         initConsultationSection();
         animateServicesOnScroll();
+        ensureConsultationVisibility(); // ADD THIS LINE
     }
 });
 /**
@@ -1401,4 +1430,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add this line to your existing DOMContentLoaded event
     initBackToTopButton();
+});
+// Add window resize handler for mobile devices
+window.addEventListener('resize', function() {
+    // Check if we're on a mobile device
+    if (window.innerWidth < 768) {
+        // Make sure the consultation section is visible
+        const consultSection = document.getElementById('consult');
+        if (consultSection) {
+            consultSection.classList.add('visible');
+        }
+        
+        // Also make other lazy sections visible
+        document.querySelectorAll('.lazy-section').forEach(section => {
+            section.classList.add('visible');
+        });
+    }
 });

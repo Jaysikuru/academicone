@@ -907,3 +907,45 @@ footer .social-link:active {
     transform: rotate(calc(var(--scroll-progress) * 360deg));
     transition: transform 0.1s ease;
 }
+/* 
+ * Mobile Fixes for Consultation Section
+ * These styles ensure the consultation section displays properly on mobile devices
+ */
+
+/* Ensure lazy sections are visible on mobile by default */
+@media (max-width: 767px) {
+    .lazy-section {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    /* Fix for the consultation section specifically */
+    #consult {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Fix for potential overflow issues */
+    #consult {
+        overflow: visible;
+    }
+    
+    /* Ensure the process timeline displays properly */
+    #consult .process-detail {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+    
+    /* Improve consultation package cards display on mobile */
+    #consult .package-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Fix for Safari mobile specifically */
+@supports (-webkit-touch-callout: none) {
+    .lazy-section {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
