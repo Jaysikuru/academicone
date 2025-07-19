@@ -34,6 +34,20 @@
     animation: gentle-pulse 3s infinite ease-in-out;
 }
 
+/* Animation for citation bars */
+@keyframes grow-bar {
+    from { height: 0; }
+    to { height: var(--target-height); }
+}
+
+.citation-bar {
+    transition: height 1.2s ease-out;
+}
+
+.citation-bar.animate {
+    animation: grow-bar 1.2s ease-out forwards;
+}
+
 /* Accessibility focus improvements */
 a:focus, button:focus {
     outline: 2px solid #0ea5e9;
@@ -66,6 +80,22 @@ a:focus, button:focus {
     transform: translateY(0);
 }
 
+/* Publication item transitions */
+.publication-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publication-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Search highlight styling */
+.search-highlight {
+    background-color: rgba(14, 165, 233, 0.2);
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
 /* Additional responsive tweaks */
 @media (max-width: 640px) {
     h1 {
@@ -74,6 +104,16 @@ a:focus, button:focus {
     
     h2 {
         font-size: 1.5rem !important;
+    }
+    
+    /* Stack filters on mobile */
+    .filters-container {
+        flex-direction: column;
+    }
+    
+    .filters-container > div {
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 }
 
@@ -104,131 +144,325 @@ img {
  * These styles complement the Tailwind utility classes
  */
 
+/* Radar Chart Animation */
+.skill-polygon {
+    transform-origin: center;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.skill-polygon.radar-animate {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.skill-point {
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.skill-point-animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Skill tooltip animation */
+#skill-tooltip {
+    transition: opacity 0.2s ease-out;
+}
+
 /* Timeline animations */
-#expertise .timeline-item.visible {
+.timeline-entry {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-animate {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Pulsing animation for skill points */
-#expertise .animate-pulse {
-    animation: skill-pulse 3s infinite ease-in-out;
+/* Award timeline dot pulse effect */
+@keyframes timeline-dot-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(14, 165, 233, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+    }
 }
 
-@keyframes skill-pulse {
-    0% { r: 6; opacity: 0.7; }
-    50% { r: 8; opacity: 1; }
-    100% { r: 6; opacity: 0.7; }
+.timeline-dot {
+    animation: timeline-dot-pulse 2s infinite;
 }
 
-/* Hover effects for certification and membership cards */
-#expertise .border.border-secondary-200.rounded-lg.p-4 {
-    transition: all 0.3s ease;
+/* Certificate card hover effects */
+.certificate-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#expertise .border.border-secondary-200.rounded-lg.p-4:hover {
+.certificate-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border-color: #0ea5e9;
 }
 
-/* SVG radar chart animations */
-#expertise svg polygon {
-    transition: all 1s ease;
-}
-
-#expertise svg:hover polygon {
-    fill-opacity: 0.3;
-    stroke-width: 3px;
-}
-
-/* Timeline track dot effects */
-#expertise .absolute.left-0.top-0.w-4.h-4.rounded-full {
-    transition: all 0.3s ease;
-}
-
-#expertise .relative.pl-10:hover .absolute.left-0.top-0.w-4.h-4.rounded-full {
-    transform: scale(1.5);
-    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
-}
-
-/* Custom collapse animation for expandable sections */
-[x-collapse] {
-    transition-property: height;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-/* Award timeline entries highlighting effect */
-#expertise .mt-2.bg-primary-50.p-3.rounded-lg {
-    border-left: 3px solid #0ea5e9;
-}
-
-/* Skill category style enhancements */
-#expertise .inline-flex.items-center.px-3.py-1.rounded-full {
-    transition: all 0.2s ease;
-}
-
-#expertise .inline-flex.items-center.px-3.py-1.rounded-full:hover {
-    transform: translateY(-2px);
-}
-
-/* Funding progress bars animation */
-#expertise .bg-primary-600.h-2.5.rounded-full {
-    transition: width 1.5s ease-in-out;
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .skills-radar {
+        width: 240px;
+        height: 240px;
+    }
 }
 
 /* Print styles for expertise section */
 @media print {
-    #expertise .bg-white {
-        box-shadow: none;
-        border: 1px solid #e2e8f0;
+    .skill-polygon, .skill-point {
+        opacity: 1;
+        transform: scale(1);
     }
     
-    #expertise .relative.pl-10 {
-        break-inside: avoid;
-    }
-    
-    #expertise [x-show="expanded"],
-    #expertise [x-show="showDetails"] {
-        display: block !important;
+    .timeline-entry {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-
-/* Accessibility improvements */
-#expertise button:focus {
-    outline: 2px solid #0ea5e9;
-    outline-offset: 2px;
+/* Expertise section fixes */
+.skills-radar-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Mobile optimizations */
+.skills-radar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skill-label {
+  position: absolute;
+  text-align: center;
+  width: 110px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.skill-label.top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.skill-label.top-right {
+  top: 25%;
+  right: 0;
+}
+
+.skill-label.bottom-right {
+  bottom: 25%;
+  right: 0;
+}
+
+.skill-label.bottom-left {
+  bottom: 25%;
+  left: 0;
+}
+
+.skill-label.top-left {
+  top: 25%;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .skills-radar-container {
+    max-width: 280px;
+    height: 280px;
+  }
+  
+  .skill-label {
+    width: 90px;
+    font-size: 0.75rem;
+  }
+  
+  .skill-label.top-right {
+    top: 20%;
+    right: -5px;
+  }
+  
+  .skill-label.bottom-right {
+    bottom: 20%;
+    right: -5px;
+  }
+  
+  .skill-label.bottom-left {
+    bottom: 20%;
+    left: -5px;
+  }
+  
+  .skill-label.top-left {
+    top: 20%;
+    left: -5px;
+  }
+}
+
 @media (max-width: 640px) {
-    #expertise .grid.grid-cols-1.md\:grid-cols-2.gap-4 {
-        gap: 1rem;
+  .skills-radar-container {
+    max-width: 240px;
+    height: 240px;
+  }
+  
+  .skills-flex-container {
+    flex-direction: column;
+  }
+  
+  .skills-chart-container {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .skills-list-container {
+    width: 100%;
+  }
+}
+/* 
+ * Teaching & Courses Section Styles
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Course card hover effects */
+.course-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Platform tab transitions */
+.platform-tab {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Testimonial card styling */
+.testimonial-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-500), var(--primary-300));
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Teaching stats animations */
+.stats-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stats-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Course platform tab indicator animation */
+.tab-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    background-color: var(--primary-600);
+    transition: transform 0.3s ease, width 0.3s ease;
+}
+
+/* Course image hover effect */
+.course-image {
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.course-image img {
+    transition: transform 0.5s ease;
+}
+
+.course-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Teaching philosophy list item animation */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
-    
-    #expertise .w-10.h-10.rounded-full {
-        width: 2rem;
-        height: 2rem;
-    }
-    
-    #expertise .text-4xl.font-bold {
-        font-size: 1.875rem;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    #expertise .bg-primary-50,
-    #expertise .bg-blue-100,
-    #expertise .bg-purple-100,
-    #expertise .bg-green-100 {
-        background-color: transparent;
-        border: 1px solid currentColor;
+.philosophy-item {
+    animation: fadeInRight 0.5s ease forwards;
+    opacity: 0;
+}
+
+.philosophy-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.philosophy-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.philosophy-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.philosophy-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .course-tabs {
+        flex-wrap: wrap;
     }
     
-    #expertise svg polygon {
-        stroke-width: 3px;
+    .course-tab {
+        flex: 0 0 calc(50% - 0.5rem);
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .course-tab {
+        flex: 0 0 100%;
     }
 }
