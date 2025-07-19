@@ -1,0 +1,234 @@
+/* 
+ * Main Styles for Academic Portfolio Website
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Custom utility classes and components */
+
+/* Line clamp for truncating text */
+.line-clamp-2 {
+    /* Modern browsers method */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+    /* Fallback for non-WebKit browsers */
+    text-overflow: ellipsis;
+    max-height: 3em; /* Approximate height for 2 lines */
+}
+
+/* Basic typography styling */
+.prose p {
+    margin-bottom: 1rem;
+}
+
+/* Custom animations */
+@keyframes gentle-pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.7; }
+}
+
+.animate-pulse {
+    animation: gentle-pulse 3s infinite ease-in-out;
+}
+
+/* Accessibility focus improvements */
+a:focus, button:focus {
+    outline: 2px solid #0ea5e9;
+    outline-offset: 2px;
+}
+
+/* Print styles for CV download */
+@media print {
+    nav, footer, .no-print {
+        display: none;
+    }
+    
+    body, html {
+        background-color: white !important;
+    }
+    
+    main {
+        padding: 0;
+        margin: 0;
+    }
+    
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* Fallbacks for when JavaScript is disabled */
+.no-js .lazy-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Additional responsive tweaks */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Performance optimizations for images */
+img {
+    content-visibility: auto;
+}
+
+/* Custom scrollbar (WebKit browsers only) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #64748b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+/* 
+ * Expertise & Recognition Section Styles
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Timeline animations */
+#expertise .timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pulsing animation for skill points */
+#expertise .animate-pulse {
+    animation: skill-pulse 3s infinite ease-in-out;
+}
+
+@keyframes skill-pulse {
+    0% { r: 6; opacity: 0.7; }
+    50% { r: 8; opacity: 1; }
+    100% { r: 6; opacity: 0.7; }
+}
+
+/* Hover effects for certification and membership cards */
+#expertise .border.border-secondary-200.rounded-lg.p-4 {
+    transition: all 0.3s ease;
+}
+
+#expertise .border.border-secondary-200.rounded-lg.p-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #0ea5e9;
+}
+
+/* SVG radar chart animations */
+#expertise svg polygon {
+    transition: all 1s ease;
+}
+
+#expertise svg:hover polygon {
+    fill-opacity: 0.3;
+    stroke-width: 3px;
+}
+
+/* Timeline track dot effects */
+#expertise .absolute.left-0.top-0.w-4.h-4.rounded-full {
+    transition: all 0.3s ease;
+}
+
+#expertise .relative.pl-10:hover .absolute.left-0.top-0.w-4.h-4.rounded-full {
+    transform: scale(1.5);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+}
+
+/* Custom collapse animation for expandable sections */
+[x-collapse] {
+    transition-property: height;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Award timeline entries highlighting effect */
+#expertise .mt-2.bg-primary-50.p-3.rounded-lg {
+    border-left: 3px solid #0ea5e9;
+}
+
+/* Skill category style enhancements */
+#expertise .inline-flex.items-center.px-3.py-1.rounded-full {
+    transition: all 0.2s ease;
+}
+
+#expertise .inline-flex.items-center.px-3.py-1.rounded-full:hover {
+    transform: translateY(-2px);
+}
+
+/* Funding progress bars animation */
+#expertise .bg-primary-600.h-2.5.rounded-full {
+    transition: width 1.5s ease-in-out;
+}
+
+/* Print styles for expertise section */
+@media print {
+    #expertise .bg-white {
+        box-shadow: none;
+        border: 1px solid #e2e8f0;
+    }
+    
+    #expertise .relative.pl-10 {
+        break-inside: avoid;
+    }
+    
+    #expertise [x-show="expanded"],
+    #expertise [x-show="showDetails"] {
+        display: block !important;
+    }
+}
+
+/* Accessibility improvements */
+#expertise button:focus {
+    outline: 2px solid #0ea5e9;
+    outline-offset: 2px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+    #expertise .grid.grid-cols-1.md\:grid-cols-2.gap-4 {
+        gap: 1rem;
+    }
+    
+    #expertise .w-10.h-10.rounded-full {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    #expertise .text-4xl.font-bold {
+        font-size: 1.875rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #expertise .bg-primary-50,
+    #expertise .bg-blue-100,
+    #expertise .bg-purple-100,
+    #expertise .bg-green-100 {
+        background-color: transparent;
+        border: 1px solid currentColor;
+    }
+    
+    #expertise svg polygon {
+        stroke-width: 3px;
+    }
+}
