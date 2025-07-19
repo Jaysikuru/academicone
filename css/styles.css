@@ -466,3 +466,444 @@ img {
         flex: 0 0 100%;
     }
 }
+/* 
+ * Consultation Services Section Styles
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Service card hover effects */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Industry card animations */
+.industry-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+}
+
+.industry-card .rounded-full {
+    transition: transform 0.3s ease;
+}
+
+.industry-card:hover .rounded-full {
+    transform: scale(1.1);
+}
+
+/* Process timeline animations */
+.process-detail {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.process-detail.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Process step timeline dots pulse animation */
+@keyframes timeline-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(14, 165, 233, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+    }
+}
+
+.timeline-dot {
+    animation: timeline-pulse 2s infinite;
+}
+
+/* Testimonial card hover effects */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Testimonial quote animation */
+.testimonial-card .absolute {
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover .absolute {
+    transform: translateY(-5px);
+}
+
+/* Package card hover animations */
+.package-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Middle package special styling for emphasis */
+.package-card.featured {
+    position: relative;
+    z-index: 10;
+}
+
+/* Contact CTA button animation */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transition: left 0.7s ease;
+}
+
+.cta-button:hover::after {
+    left: 100%;
+}
+
+/* Animation for the process steps on scroll */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.process-step {
+    opacity: 0;
+}
+
+.process-step.animated {
+    animation: fadeInRight 0.5s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .process-timeline {
+        left: 1rem;
+    }
+    
+    .process-step {
+        padding-left: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .package-cards {
+        flex-direction: column;
+    }
+    
+    .package-card.featured {
+        transform: translateY(0);
+        order: -1;
+        margin-bottom: 1.5rem;
+    }
+}
+/* 
+ * Contact Section Styles
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Form field focus effects */
+.form-field:focus {
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.3);
+}
+
+/* Social link hover animations */
+.social-link {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+}
+
+.social-link svg {
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover svg {
+    transform: scale(1.1);
+}
+
+/* Contact information icon animations */
+.contact-info-icon {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-info-item:hover .contact-info-icon {
+    transform: scale(1.1);
+    background-color: rgba(14, 165, 233, 0.2);
+}
+
+/* Form submit button effects */
+.submit-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transition: left 0.7s ease;
+}
+
+.submit-button:hover::after {
+    left: 100%;
+}
+
+/* Success message animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-message {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Error message animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error-message {
+    animation: shake 0.5s ease forwards;
+}
+
+/* Map container styling */
+.map-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.map-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 165, 233, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.map-container:hover::before {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-info-card {
+        flex-direction: column;
+    }
+    
+    .contact-info-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+/* 
+ * Footer Section Styles
+ * These styles complement the Tailwind utility classes
+ */
+
+/* Footer social link hover animations */
+footer .social-link {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer .social-link:hover {
+    transform: translateY(-3px);
+}
+
+/* Footer link hover effect with underline */
+footer a {
+    position: relative;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Footer section spacing and padding adjustments */
+@media (max-width: 768px) {
+    footer .grid {
+        gap: 2rem;
+    }
+    
+    footer .md\:col-span-2 {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Dark mode footer adjustments (if needed) */
+@media (prefers-color-scheme: dark) {
+    footer {
+        background-color: #0f172a; /* Adjust to match your theme's darkest color */
+    }
+}
+
+/* Animation for the footer social links */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+footer .social-link:active {
+    animation: pulse 0.3s ease;
+}
+/* Book cover styling */
+.book-cover {
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.book-cover:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+/* Back to Top Button Styles */
+#back-to-top {
+    transform: translateY(100px);
+    transition: all 0.3s ease-in-out;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    transform: translateY(-2px);
+}
+
+#back-to-top:active {
+    transform: translateY(0);
+}
+
+/* Button pulse animation on first appearance */
+#back-to-top.pulse {
+    animation: backToTopPulse 1.5s ease-in-out;
+}
+
+@keyframes backToTopPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(14, 165, 233, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    #back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    #back-to-top svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+/* Add to styles.css */
+#back-to-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #fff;
+    transform: rotate(calc(var(--scroll-progress) * 360deg));
+    transition: transform 0.1s ease;
+}

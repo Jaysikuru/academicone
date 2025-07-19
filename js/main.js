@@ -23,6 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
         initPublicationsSection();
         initCitationAnimation();
     }
+    // Initialize consultation section if it exists
+    if (document.getElementById('consult')) {
+        initConsultationSection();
+        animateServicesOnScroll();
+    }
+
+    // Initialize contact section if it exists
+    if (document.getElementById('contact')) {
+        initContactSection();
+    }
+    
+    // Initialize footer links
+    initFooterLinks();
+
+    initBackToTopButton();
     
     // Add no-js class to handle JavaScript disabled scenarios
     document.documentElement.classList.remove('no-js');
@@ -840,4 +855,550 @@ document.addEventListener('DOMContentLoaded', () => {
         initTeachingSection();
         initPhilosophyAnimation();
     }
+});
+/**
+ * Consultation Services Section JavaScript
+ * Handles animations and interactivity for the consultation section
+ */
+
+// Function to initialize consultation section functionality
+function initConsultationSection() {
+    // Initialize service cards hover effects
+    initServiceCards();
+    
+    // Initialize process timeline animations
+    initProcessTimeline();
+    
+    // Initialize testimonial animations
+    initTestimonialCards();
+    
+    // Initialize package card animations
+    initPackageCards();
+    
+    // Add CTA button effect
+    initCtaButton();
+}
+
+/**
+ * Initialize service cards animations
+ */
+function initServiceCards() {
+    const serviceCards = document.querySelectorAll('#consult .service-card');
+    const industryCards = document.querySelectorAll('#consult .industry-card');
+    
+    // Add animation classes if not already present
+    serviceCards.forEach(card => {
+        if (!card.classList.contains('service-card')) {
+            card.classList.add('service-card');
+        }
+    });
+    
+    industryCards.forEach(card => {
+        if (!card.classList.contains('industry-card')) {
+            card.classList.add('industry-card');
+        }
+    });
+}
+
+/**
+ * Initialize process timeline animations on scroll
+ */
+function initProcessTimeline() {
+    const processSteps = document.querySelectorAll('#consult .relative.flex.flex-col.md\\:flex-row');
+    const processDetails = document.querySelectorAll('#consult .process-detail');
+    const timelineDots = document.querySelectorAll('#consult .h-10.w-10.rounded-full.bg-primary-600');
+    
+    if (!processSteps.length) return;
+    
+    // Add timeline-dot class to dots
+    timelineDots.forEach(dot => {
+        dot.classList.add('timeline-dot');
+    });
+    
+    // Add process-step class to steps
+    processSteps.forEach(step => {
+        step.classList.add('process-step');
+    });
+    
+    // Create observer for process steps
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                
+                // Also animate the detail box inside this step
+                const detail = entry.target.querySelector('.process-detail');
+                if (detail) {
+                    detail.classList.add('animated');
+                }
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+    });
+    
+    // Observe each process step
+    processSteps.forEach(step => {
+        observer.observe(step);
+    });
+}
+
+/**
+ * Initialize testimonial cards animations
+ */
+function initTestimonialCards() {
+    const testimonialCards = document.querySelectorAll('#consult .testimonial-card');
+    
+    if (!testimonialCards.length) return;
+    
+    // Create observer for testimonials
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add animation with staggered delay
+                setTimeout(() => {
+                    entry.target.classList.add('testimonial-visible');
+                }, index * 200);
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+    
+    // Observe each testimonial
+    testimonialCards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
+/**
+ * Initialize package card animations
+ */
+function initPackageCards() {
+    const packageCards = document.querySelectorAll('#consult .package-card');
+    
+    // Find the middle/featured package
+    if (packageCards.length >= 3) {
+        // The middle package (index 1 in a 3-card layout) is typically featured
+        packageCards[1].classList.add('featured');
+    }
+    
+    // Add animation classes if not already present
+    packageCards.forEach(card => {
+        if (!card.classList.contains('package-card')) {
+            card.classList.add('package-card');
+        }
+    });
+}
+
+/**
+ * Initialize CTA button animation
+ */
+function initCtaButton() {
+    const ctaButtons = document.querySelectorAll('#consult a[href="#contact"]');
+    
+    ctaButtons.forEach(button => {
+        button.classList.add('cta-button');
+    });
+}
+
+/**
+ * Animate services on scroll
+ */
+function animateServicesOnScroll() {
+    const services = document.querySelectorAll('#consult .service-card');
+    
+    if (!services.length) return;
+    
+    // Create observer for services
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add animation with staggered delay
+                setTimeout(() => {
+                    entry.target.classList.add('service-visible');
+                }, index * 150);
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    // Observe each service
+    services.forEach(service => {
+        observer.observe(service);
+    });
+}
+
+// Call initConsultationSection function when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize consultation section if it exists
+    if (document.getElementById('consult')) {
+        initConsultationSection();
+        animateServicesOnScroll();
+    }
+});
+/**
+ * Contact Section JavaScript
+ * Handles form submission and validation for the contact section
+ */
+
+// Function to initialize contact section functionality
+function initContactSection() {
+    // Initialize form validation and submission
+    initContactForm();
+    
+    // Add animation classes to elements
+    initContactAnimations();
+    
+    // Initialize social link hover effects
+    initSocialLinks();
+}
+
+/**
+ * Initialize contact form validation and submission
+ */
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (!contactForm) return;
+    
+    // Add form-field class to all form inputs for styling
+    const formFields = contactForm.querySelectorAll('input, textarea');
+    formFields.forEach(field => {
+        field.classList.add('form-field');
+    });
+    
+    // Add submit-button class to submit button
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (submitButton) {
+        submitButton.classList.add('submit-button');
+    }
+    
+    // Form submission handler
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Check if form is valid
+        if (!validateForm(contactForm)) {
+            showErrorMessage("Please fill in all required fields correctly.");
+            return;
+        }
+        
+        // Show loading state
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+            `;
+        }
+        
+        // In a real implementation, you would send the form data to a server here
+        // For now, we'll simulate a successful submission after a delay
+        setTimeout(function() {
+            // Reset form
+            contactForm.reset();
+            
+            // Show success message
+            showSuccessMessage("Your message has been sent successfully! I'll get back to you soon.");
+            
+            // Reset button state
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.innerHTML = `
+                    <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Send Message
+                `;
+            }
+        }, 1500);
+    });
+}
+
+/**
+ * Validate the contact form
+ * @param {HTMLFormElement} form - The form to validate
+ * @returns {boolean} - Whether the form is valid
+ */
+function validateForm(form) {
+    let isValid = true;
+    
+    // Required fields
+    const name = form.querySelector('#name');
+    const email = form.querySelector('#email');
+    const message = form.querySelector('#message');
+    
+    // Check if required fields are filled
+    if (!name.value.trim()) {
+        highlightInvalidField(name);
+        isValid = false;
+    } else {
+        removeInvalidHighlight(name);
+    }
+    
+    if (!email.value.trim()) {
+        highlightInvalidField(email);
+        isValid = false;
+    } else if (!isValidEmail(email.value.trim())) {
+        highlightInvalidField(email);
+        isValid = false;
+    } else {
+        removeInvalidHighlight(email);
+    }
+    
+    if (!message.value.trim()) {
+        highlightInvalidField(message);
+        isValid = false;
+    } else {
+        removeInvalidHighlight(message);
+    }
+    
+    return isValid;
+}
+
+/**
+ * Validate email format
+ * @param {string} email - The email to validate
+ * @returns {boolean} - Whether the email is valid
+ */
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+/**
+ * Highlight an invalid form field
+ * @param {HTMLElement} field - The field to highlight
+ */
+function highlightInvalidField(field) {
+    field.classList.add('border-red-500');
+    field.classList.add('bg-red-50');
+    
+    // Add shake animation
+    field.classList.add('animate-shake');
+    
+    // Remove shake animation after it completes
+    setTimeout(() => {
+        field.classList.remove('animate-shake');
+    }, 500);
+}
+
+/**
+ * Remove highlight from a valid field
+ * @param {HTMLElement} field - The field to remove highlight from
+ */
+function removeInvalidHighlight(field) {
+    field.classList.remove('border-red-500');
+    field.classList.remove('bg-red-50');
+}
+
+/**
+ * Show a success message below the form
+ * @param {string} message - The success message to show
+ */
+function showSuccessMessage(message) {
+    // Remove any existing messages
+    removeMessages();
+    
+    // Create success message element
+    const successMessage = document.createElement('div');
+    successMessage.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg success-message';
+    successMessage.innerHTML = `
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Add to DOM
+    const contactForm = document.getElementById('contact-form');
+    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        successMessage.remove();
+    }, 5000);
+}
+
+/**
+ * Show an error message below the form
+ * @param {string} message - The error message to show
+ */
+function showErrorMessage(message) {
+    // Remove any existing messages
+    removeMessages();
+    
+    // Create error message element
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'mt-4 p-4 bg-red-100 text-red-800 rounded-lg error-message';
+    errorMessage.innerHTML = `
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Add to DOM
+    const contactForm = document.getElementById('contact-form');
+    contactForm.parentNode.insertBefore(errorMessage, contactForm.nextSibling);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        errorMessage.remove();
+    }, 5000);
+}
+
+/**
+ * Remove all message elements
+ */
+function removeMessages() {
+    document.querySelectorAll('.success-message, .error-message').forEach(el => el.remove());
+}
+
+/**
+ * Initialize contact section animations
+ */
+function initContactAnimations() {
+    // Add contact-info-icon class to contact info icons
+    const contactInfoIcons = document.querySelectorAll('#contact .flex-shrink-0.h-10.w-10.rounded-full');
+    contactInfoIcons.forEach(icon => {
+        icon.classList.add('contact-info-icon');
+    });
+    
+    // Add contact-info-item class to contact info items
+    const contactInfoItems = document.querySelectorAll('#contact .flex.items-start');
+    contactInfoItems.forEach(item => {
+        item.classList.add('contact-info-item');
+    });
+    
+    // Add map-container class to map container
+    const mapContainer = document.querySelector('#contact .aspect-w-16');
+    if (mapContainer) {
+        mapContainer.classList.add('map-container');
+    }
+}
+
+/**
+ * Initialize social link hover effects
+ */
+function initSocialLinks() {
+    // Add social-link class to social links
+    const socialLinks = document.querySelectorAll('#contact .flex.flex-col.items-center');
+    socialLinks.forEach(link => {
+        link.classList.add('social-link');
+    });
+}
+
+// Call initContactSection function when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize contact section if it exists
+    if (document.getElementById('contact')) {
+        initContactSection();
+    }
+});
+/**
+ * Initialize footer social links animations
+ */
+function initFooterLinks() {
+    // Add social-link class to footer social links
+    const socialLinks = document.querySelectorAll('footer a[aria-label]');
+    socialLinks.forEach(link => {
+        link.classList.add('social-link');
+    });
+}
+/**
+ * Back to Top Button Functionality
+ */
+function initBackToTopButton() {
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    if (!backToTopButton) return;
+    
+    let hasBeenVisible = false;
+    
+    // Show/hide button based on scroll position
+    function toggleBackToTopButton() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const shouldShow = scrollTop > 300; // Show after scrolling 300px
+        
+        if (shouldShow && !backToTopButton.classList.contains('visible')) {
+            backToTopButton.classList.add('visible');
+            
+            // Add pulse animation on first appearance
+            if (!hasBeenVisible) {
+                backToTopButton.classList.add('pulse');
+                hasBeenVisible = true;
+                
+                // Remove pulse class after animation
+                setTimeout(() => {
+                    backToTopButton.classList.remove('pulse');
+                }, 1500);
+            }
+        } else if (!shouldShow && backToTopButton.classList.contains('visible')) {
+            backToTopButton.classList.remove('visible');
+        }
+    }
+    
+    // Smooth scroll to top
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Optional: Track analytics
+        console.log('Back to top button clicked');
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', throttle(toggleBackToTopButton, 100));
+    backToTopButton.addEventListener('click', scrollToTop);
+    
+    // Keyboard accessibility
+    backToTopButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollToTop();
+        }
+    });
+}
+
+/**
+ * Throttle function to improve scroll performance
+ */
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+// Initialize back to top button when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // ... your existing initialization code ...
+    
+    // Add this line to your existing DOMContentLoaded event
+    initBackToTopButton();
 });
