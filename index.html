@@ -1465,85 +1465,129 @@
                     </div>
                 </div>
                 
-                <!-- Recognition & Awards -->
+                            <!-- Recognition & Awards -->
                 <div class="mb-16">
-                    <h3 class="text-2xl font-serif font-bold text-secondary-800 mb-6">Recognition & Awards</h3>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-800 mb-6 text-center">Recognition & Awards</h3>
                     
                     <!-- Timeline component -->
                     <div class="relative">
                         <!-- Timeline line -->
-                        <div class="absolute top-0 bottom-0 left-0 md:left-1/2 w-px bg-secondary-200 transform md:translate-x-0 translate-x-7"></div>
+                        <div class="absolute top-0 bottom-0 left-1/2 w-px bg-secondary-200 transform -translate-x-1/2 hidden md:block"></div>
+                        <div class="absolute top-0 bottom-0 left-7 w-px bg-secondary-200 md:hidden"></div>
                         
                         <!-- Timeline entries -->
-                        <div class="space-y-12">
-                            <!-- Award 1 -->
-                            <div class="relative flex flex-col md:flex-row items-start md:justify-between">
-                                <div class="flex items-center mb-2 md:mb-0 md:w-5/12">
-                                    <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:translate-x-0 translate-x-7 -translate-x-1.5 md:-translate-x-1.5"></div>
-                                    <div class="md:text-right pl-10 md:pl-0 md:pr-8">
-                                        <h4 class="text-lg font-bold text-secondary-800">Breakthrough Prize in Fundamental Physics</h4>
-                                        <p class="text-primary-600 font-medium">2023</p>
-                                        <div class="text-secondary-600 mt-1 md:ml-auto md:w-fit">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                                                $3,000,000
-                                            </span>
-                                        </div>
+                        <div class="space-y-12 md:space-y-24">
+                            <!-- Award 1 - Left side on desktop -->
+                            <div class="relative flex flex-col md:flex-row items-start">
+                                <!-- Timeline dot -->
+                                <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:-translate-x-1/2 translate-x-7 z-10"></div>
+                                
+                                <!-- Left content (visible on desktop) -->
+                                <div class="md:w-1/2 pr-12 text-right hidden md:block">
+                                    <h4 class="text-lg font-bold text-secondary-800">Breakthrough Prize in Fundamental Physics</h4>
+                                    <p class="text-primary-600 font-medium">2023</p>
+                                    <div class="text-secondary-600 mt-1 ml-auto w-fit">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            $3,000,000
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="pl-10 md:pl-8 md:w-5/12">
-                                    <p class="text-secondary-600">Awarded for groundbreaking work on quantum entanglement and its applications in quantum computing and secure communications.</p>
+                                
+                                <!-- Mobile content (full width) -->
+                                <div class="md:hidden pl-16">
+                                    <h4 class="text-lg font-bold text-secondary-800">Breakthrough Prize in Fundamental Physics</h4>
+                                    <p class="text-primary-600 font-medium">2023</p>
+                                    <div class="text-secondary-600 mt-1">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            $3,000,000
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right side placeholder (desktop) -->
+                                <div class="md:w-1/2 hidden md:block"></div>
+                            </div>
+                            
+                            <!-- Award 2 - Right side on desktop -->
+                            <div class="relative flex flex-col md:flex-row items-start">
+                                <!-- Timeline dot -->
+                                <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:-translate-x-1/2 translate-x-7 z-10"></div>
+                                
+                                <!-- Left side placeholder (desktop) -->
+                                <div class="md:w-1/2 hidden md:block"></div>
+                                
+                                <!-- Right content (visible on desktop) -->
+                                <div class="md:w-1/2 pl-12 hidden md:block">
+                                    <h4 class="text-lg font-bold text-secondary-800">Simons Investigator Award</h4>
+                                    <p class="text-primary-600 font-medium">2022</p>
+                                    <div class="text-secondary-600 mt-1">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            5-year grant
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Mobile content (full width) -->
+                                <div class="md:hidden pl-16">
+                                    <h4 class="text-lg font-bold text-secondary-800">Simons Investigator Award</h4>
+                                    <p class="text-primary-600 font-medium">2022</p>
+                                    <div class="text-secondary-600 mt-1">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            5-year grant
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <!-- Award 2 -->
-                            <div class="relative flex flex-col md:flex-row items-start md:justify-between">
-                                <div class="flex items-center mb-2 md:mb-0 md:w-5/12">
-                                    <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:translate-x-0 translate-x-7 -translate-x-1.5 md:-translate-x-1.5"></div>
-                                    <div class="md:text-right pl-10 md:pl-0 md:pr-8">
-                                        <h4 class="text-lg font-bold text-secondary-800">Simons Investigator Award</h4>
-                                        <p class="text-primary-600 font-medium">2022</p>
-                                        <div class="text-secondary-600 mt-1 md:ml-auto md:w-fit">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                                                5-year grant
-                                            </span>
-                                        </div>
+                            <!-- Award 3 - Left side on desktop -->
+                            <div class="relative flex flex-col md:flex-row items-start">
+                                <!-- Timeline dot -->
+                                <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:-translate-x-1/2 translate-x-7 z-10"></div>
+                                
+                                <!-- Left content (visible on desktop) -->
+                                <div class="md:w-1/2 pr-12 text-right hidden md:block">
+                                    <h4 class="text-lg font-bold text-secondary-800">National Science Foundation CAREER Award</h4>
+                                    <p class="text-primary-600 font-medium">2020</p>
+                                    <div class="text-secondary-600 mt-1 ml-auto w-fit">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            $500,000
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="pl-10 md:pl-8 md:w-5/12">
-                                    <p class="text-secondary-600">Recognized for innovative theoretical contributions to quantum information science and awarded substantial long-term research funding.</p>
+                                
+                                <!-- Mobile content (full width) -->
+                                <div class="md:hidden pl-16">
+                                    <h4 class="text-lg font-bold text-secondary-800">National Science Foundation CAREER Award</h4>
+                                    <p class="text-primary-600 font-medium">2020</p>
+                                    <div class="text-secondary-600 mt-1">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                            $500,000
+                                        </span>
+                                    </div>
                                 </div>
+                                
+                                <!-- Right side placeholder (desktop) -->
+                                <div class="md:w-1/2 hidden md:block"></div>
                             </div>
                             
-                            <!-- Award 3 -->
-                            <div class="relative flex flex-col md:flex-row items-start md:justify-between">
-                                <div class="flex items-center mb-2 md:mb-0 md:w-5/12">
-                                    <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:translate-x-0 translate-x-7 -translate-x-1.5 md:-translate-x-1.5"></div>
-                                    <div class="md:text-right pl-10 md:pl-0 md:pr-8">
-                                        <h4 class="text-lg font-bold text-secondary-800">National Science Foundation CAREER Award</h4>
-                                        <p class="text-primary-600 font-medium">2020</p>
-                                        <div class="text-secondary-600 mt-1 md:ml-auto md:w-fit">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                                                $500,000
-                                            </span>
-                                        </div>
-                                    </div>
+                            <!-- Award 4 - Right side on desktop -->
+                            <div class="relative flex flex-col md:flex-row items-start">
+                                <!-- Timeline dot -->
+                                <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:-translate-x-1/2 translate-x-7 z-10"></div>
+                                
+                                <!-- Left side placeholder (desktop) -->
+                                <div class="md:w-1/2 hidden md:block"></div>
+                                
+                                <!-- Right content (visible on desktop) -->
+                                <div class="md:w-1/2 pl-12 hidden md:block">
+                                    <h4 class="text-lg font-bold text-secondary-800">Stanford University Excellence in Teaching Award</h4>
+                                    <p class="text-primary-600 font-medium">2019</p>
                                 </div>
-                                <div class="pl-10 md:pl-8 md:w-5/12">
-                                    <p class="text-secondary-600">Prestigious early-career faculty award supporting research and education in quantum computing applications for cryptography.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Award 4 -->
-                            <div class="relative flex flex-col md:flex-row items-start md:justify-between">
-                                <div class="flex items-center mb-2 md:mb-0 md:w-5/12">
-                                    <div class="absolute left-0 md:left-1/2 w-3.5 h-3.5 bg-primary-600 border-4 border-primary-100 rounded-full transform md:translate-x-0 translate-x-7 -translate-x-1.5 md:-translate-x-1.5"></div>
-                                    <div class="md:text-right pl-10 md:pl-0 md:pr-8">
-                                        <h4 class="text-lg font-bold text-secondary-800">Stanford University Excellence in Teaching Award</h4>
-                                        <p class="text-primary-600 font-medium">2019</p>
-                                    </div>
-                                </div>
-                                <div class="pl-10 md:pl-8 md:w-5/12">
-                                    <p class="text-secondary-600">Recognized for exceptional teaching and educational innovation in quantum physics courses, particularly for developing hands-on laboratory experiences.</p>
+                                
+                                <!-- Mobile content (full width) -->
+                                <div class="md:hidden pl-16">
+                                    <h4 class="text-lg font-bold text-secondary-800">Stanford University Excellence in Teaching Award</h4>
+                                    <p class="text-primary-600 font-medium">2019</p>
                                 </div>
                             </div>
                         </div>
